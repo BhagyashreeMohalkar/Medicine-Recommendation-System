@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Insights Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+      body {
+        background: linear-gradient(135deg, #e6f7ff, #b3e0ff, #80caff);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: #222;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="5" fill="%230056b3"/></svg>') 10 10, auto;
+      }
+      @keyframes gradientBG {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+      }
+      header {
+        background: rgba(0, 86, 179, 0.9);
+        color: #fff;
+        padding: 25px 0;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        position: relative;
+        overflow: hidden;
+        animation: headerGlow 3s infinite;
+      }
+      @keyframes headerGlow {
+        0% { box-shadow: 0 4px 15px rgba(0,86,179,0.2); }
+        50% { box-shadow: 0 4px 25px rgba(0,86,179,0.5); }
+        100% { box-shadow: 0 4px 15px rgba(0,86,179,0.2); }
+      }
+      header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        animation: shine 3s infinite;
+      }
+      @keyframes shine {
+        to {
+          left: 100%;
+        }
+      }
+      footer {
+        background: rgba(0, 86, 179, 0.9);
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+        animation: footerPulse 2s infinite;
+      }
+      @keyframes footerPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.005); }
+        100% { transform: scale(1); }
+      }
+      h2, h3 {
+        color: #003366;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        margin: 30px 0;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      h2:hover, h3:hover {
+        transform: scale(1.02);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      }
+      .container {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        backdrop-filter: blur(4px);
+        margin: 40px auto;
+        transform: translateY(20px);
+        opacity: 0;
+        animation: slideUp 1s forwards, containerGlow 3s infinite;
+      }
+      @keyframes containerGlow {
+        0% { box-shadow: 0 8px 32px rgba(31,38,135,0.15); }
+        50% { box-shadow: 0 8px 32px rgba(0,86,179,0.3); }
+        100% { box-shadow: 0 8px 32px rgba(31,38,135,0.15); }
+      }
+      @keyframes slideUp {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .motivational-quote {
+        font-style: italic;
+        background: linear-gradient(45deg, #ff6347, #ff8c00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin: 35px 0;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 20px;
+        border-left: 4px solid #ff6347;
+        border-right: 4px solid #ff8c00;
+        animation: quotePulse 2s infinite;
+      }
+      @keyframes quotePulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+        100% { transform: scale(1); }
+      }
+      p {
+        line-height: 1.8;
+        font-size: 1.1em;
+        color: #444;
+        transition: all 0.3s ease;
+      }
+      p:hover {
+        transform: translateX(5px);
+        color: #0056b3;
+      }
+      ol li, ul li {
+        margin: 15px 0;
+        padding-left: 10px;
+        line-height: 1.6;
+        transition: all 0.3s ease;
+      }
+      ol li:hover, ul li:hover {
+        transform: translateX(10px);
+        color: #0056b3;
+      }
+      .feature-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 15px 0;
+        transition: all 0.3s ease;
+        border-left: 4px solid #0056b3;
+        animation: cardFloat 3s infinite;
+      }
+      @keyframes cardFloat {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0); }
+      }
+      .feature-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      }
+      strong {
+        color: #0056b3;
+        position: relative;
+        display: inline-block;
+      }
+      strong::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background: #0056b3;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      strong:hover::after {
+        transform: scaleX(1);
+      }
+      .fas {
+        transition: all 0.3s ease;
+      }
+      .fas:hover {
+        transform: rotate(360deg);
+        color: #ff6347;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="animate__animated animate__fadeIn">
+      <h1><i class="fas fa-heartbeat"></i> Discover Health Insights with Bhagyashree Mohalkar</h1>
+    </header>
+
+    <div class="container animate__animated animate__fadeIn">
+        <h2 class="text-center animate__animated animate__slideInDown">
+          <i class="fas fa-laptop-medical"></i> Crafting a Symptom-Driven Health Diagnosis Platform with Flask and AI
+        </h2>
+        
+        <p class="animate__animated animate__fadeIn">In today's digital era, having access to precise and prompt healthcare is more vital than ever. As remote healthcare solutions gain traction, we embarked on a mission to create a symptom-driven health diagnosis platform. Utilizing Flask for backend operations and a Decision Tree Classifier model, we developed an intuitive platform that assists users in identifying potential health concerns based on their symptoms.</p>
+
+        <div class="motivational-quote animate__animated animate__pulse">
+          <i class="fas fa-quote-left"></i> "The greatest wealth is health." - Virgil <i class="fas fa-quote-right"></i>
+        </div>
+
+        <h3><i class="fas fa-tasks"></i> The Challenge</h3>
+        <p>Our journey began by addressing a common dilemma: individuals often experience symptoms and seek immediate clarity regarding their health issues. Distinguishing between various health conditions can be daunting, especially when symptoms overlap. Our objective was to offer a seamless solution for users to input their symptoms and receive potential diagnoses.</p>
+
+        <h3><i class="fas fa-lightbulb"></i> The Approach</h3>
+        <p>We engineered a web application that enables users to input a list of symptoms they are experiencing. The application employs a pre-trained Decision Tree Classifier model to forecast the most probable health condition based on the input symptoms. Here's the process:</p>
+
+        <ol class="feature-card">
+            <li><strong><i class="fas fa-keyboard"></i> Symptom Input:</strong> Users input their symptoms through an intuitive interface. The platform accommodates a broad spectrum of symptoms, making it adaptable for various scenarios.</li>
+            <li><strong><i class="fas fa-brain"></i> AI Model:</strong> We trained a Decision Tree Classifier using a dataset of symptoms and corresponding health conditions. The model predicts health issues based on the input symptoms.</li>
+            <li><strong><i class="fas fa-chart-line"></i> Prediction:</strong> The application utilizes the model to forecast the most likely health condition, offering users immediate insights into potential health concerns.</li>
+            <li><strong><i class="fas fa-info-circle"></i> Additional Information:</strong> To enrich user experience, the application also provides supplementary information about the predicted health condition, including a description, recommended precautions, medications, dietary advice, and exercise tips.</li>
+        </ol>
+
+        <h3><i class="fas fa-star"></i> Key Features</h3>
+        <ul class="feature-card">
+            <li><strong><i class="fas fa-user-friendly"></i> Intuitive Interface:</strong> The platform features a user-friendly and easy-to-navigate interface, ensuring users can input their symptoms effortlessly.</li>
+            <li><strong><i class="fas fa-bullseye"></i> Precise Predictions:</strong> Leveraging AI, our model delivers precise health predictions based on the symptoms provided by the user.</li>
+            <li><strong><i class="fas fa-book-medical"></i> Comprehensive Insights:</strong> Beyond predictions, the application offers detailed information about the predicted health condition, including descriptions, precautions, medications, dietary suggestions, and exercise tips.</li>
+            <li><strong><i class="fas fa-newspaper"></i> Informative Content:</strong> To empower users with knowledge, the platform includes educational blog posts on various health topics.</li>
+        </ul>
+
+        <br>
+
+        <h3><i class="fas fa-flag-checkered"></i> Conclusion</h3>
+        <p>Our Symptom-Driven Health Diagnosis Platform harnesses the power of AI and healthcare information, bringing it directly to users' fingertips. It serves as a valuable tool for individuals seeking quick and convenient insights into their health conditions. By merging technology with healthcare, we strive to make healthcare more accessible and user-focused.</p>
+
+        <p>In an age where remote healthcare solutions are becoming increasingly important, this project marks a significant advancement in delivering accessible and trustworthy healthcare information to the public. We aspire for this project to enhance health awareness and ultimately improve the well-being of individuals globally.</p>
+
+    </div>
+
+    <footer class="animate__animated animate__fadeIn">
+      <p><i class="fas fa-heart"></i> Stay Healthy, Stay Informed - Bhagyashree Mohalkar </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

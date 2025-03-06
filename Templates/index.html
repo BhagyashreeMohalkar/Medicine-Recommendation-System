@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Makardhwaj Medicine Recommendation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+        body {
+            background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+            color: #2d3748;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(236,242,254,0.95) 100%);
+            pointer-events: none;
+            z-index: -1;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 35px;
+            margin: 30px auto;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .myimg {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #4299e1;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.2);
+        }
+
+        .myimg:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(66, 153, 225, 0.3);
+        }
+
+        .text-green {
+            color: #48bb78;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 161, 105, 0.3);
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #63b3ed 0%, #4299e1 100%);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            width: 100%;
+            color: white;
+        }
+
+        .btn-info:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.3);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #fbd38d 0%, #f6ad55 100%);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(246, 173, 85, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 161, 105, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(113, 128, 150, 0.3);
+        }
+
+        .btn-dark {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .btn-dark:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 55, 72, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(229, 62, 62, 0.3);
+        }
+
+        .btn-outline-success {
+            color: #48bb78;
+            border: 2px solid #48bb78;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-success:hover {
+            background: #48bb78;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            margin: 40px 0;
+            padding: 25px;
+            border-bottom: 3px solid #48bb78;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .form-control {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            border-color: #48bb78;
+            box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .modal-content {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            border-radius: 16px 16px 0 0;
+            padding: 20px 25px;
+        }
+
+        .modal-body {
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%) !important;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            padding: 10px 15px !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            color: #48bb78 !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="gradient-overlay"></div>
+
+    <!-- Rest of the content remains the same -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand animate__animated animate__fadeIn" href="#">Makardhwaj Medicine Recommendation System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active animate__animated animate__fadeIn" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="/contact">Get in Touch</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="/developer">Meet the Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="/blog">Health Blog</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search for health topics..." aria-label="Search">
+                    <button class="btn btn-success animate__animated animate__fadeIn" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+<!-- main form of page -->
+<h1 class="main-title animate__animated animate__fadeInDown">
+    Makardhwaj Medicine Recommendation System
+</h1>
+<div class="container my-4 animate__animated animate__fadeIn">
+    <form action="/predict" method="post">
+        <div class="form-group">
+            <label for="symptoms" style="color: #2d3748; font-weight: 500;">Select Symptoms:</label>
+            <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="Type symptoms such as itching, sleeping, aching etc">
+        </div>
+        <br>
+
+        <div name="mysysms" id="transcription" style="color: #2d3748;"></div>
+
+        {% if message %}
+        <p class="alert alert-info">{{ message }}</p>
+        {% endif %}
+        <br>
+
+        <button type="submit" class="btn btn-primary btn-lg w-100 animate__animated animate__fadeInUp">
+            Predict
+        </button>
+    </form>
+</div>
+
+{% if predicted_disease %}
+<!-- Results -->
+<h1 class="text-center my-4 animate__animated animate__fadeIn" style="color: #2d3748;">Diagnostic Results</h1>
+<div class="container animate__animated animate__fadeIn">
+    <div class="result-container">
+        <div class="d-flex flex-column">
+            <button class="btn btn-primary animate__animated animate__fadeInLeft" data-bs-toggle="modal" data-bs-target="#diseaseModal">
+                Illness
+            </button>
+
+            <button class="btn btn-info animate__animated animate__fadeInLeft" data-bs-toggle="modal" data-bs-target="#descriptionModal">
+                Explanation
+            </button>
+
+            <button class="btn btn-warning animate__animated animate__fadeInLeft" data-bs-toggle="modal" data-bs-target="#precautionModal">
+                Safety Measure
+            </button>
+
+            <button class="btn btn-success animate__animated animate__fadeInLeft" data-bs-toggle="modal" data-bs-target="#medicationsModal">
+                Drugs
+            </button>
+
+            <button class="btn btn-secondary animate__animated animate__fadeInLeft" data-bs-toggle="modal" data-bs-target="#workoutsModal">
+                Exercises
+            </button>
+
+            <button class="btn btn-dark animate__animated animate__fadeInLeft" data-bs-toggle="modal" data-bs-target="#dietsModal">
+                Nutrition Plans
+            </button>
+
+            <button onclick="downloadReport()" class="btn btn-danger animate__animated animate__fadeInLeft">
+                Download Report
+            </button>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Disease Modal -->
+    <div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="diseaseModalLabel">Predicted Disease</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ predicted_disease }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Description Modal -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="descriptionModalLabel">Description</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ dis_des }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Precaution Modal -->
+    <div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="precautionModalLabel">Precaution</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        {% for i in my_precautions %}
+                            <li class="list-group-item">{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medications Modal -->
+    <div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="medicationsModalLabel">Medications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        {% for i in medications %}
+                            <li class="list-group-item">{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workouts Modal -->
+    <div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="workoutsModalLabel">Workouts</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        {% for i in workout %}
+                            <li class="list-group-item">{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diets Modal -->
+    <div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dietsModalLabel">Diets</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        {% for i in my_diet %}
+                            <li class="list-group-item">{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+    const transcriptionDiv = document.getElementById('transcription');
+
+    startSpeechRecognitionButton.addEventListener('click', startSpeechRecognition);
+
+    function startSpeechRecognition() {
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = 'en-US';
+
+        recognition.onresult = function (event) {
+            const result = event.results[0][0].transcript;
+            transcriptionDiv.textContent = result;
+        };
+
+        recognition.onend = function () {
+            console.log('Speech recognition ended.');
+        };
+
+        recognition.start();
+    }
+
+    function downloadReport() {
+        // Create report content
+        let reportContent = `Medical Report\n\n`;
+        reportContent += `Disease: ${document.querySelector('#diseaseModal .modal-body p').textContent}\n\n`;
+        reportContent += `Description: ${document.querySelector('#descriptionModal .modal-body p').textContent}\n\n`;
+        
+        reportContent += `Precautions:\n`;
+        document.querySelectorAll('#precautionModal .list-group-item').forEach(item => {
+            reportContent += `- ${item.textContent}\n`;
+        });
+        
+        reportContent += `\nMedications:\n`;
+        document.querySelectorAll('#medicationsModal .list-group-item').forEach(item => {
+            reportContent += `- ${item.textContent}\n`;
+        });
+        
+        reportContent += `\nWorkouts:\n`;
+        document.querySelectorAll('#workoutsModal .list-group-item').forEach(item => {
+            reportContent += `- ${item.textContent}\n`;
+        });
+        
+        reportContent += `\nDiet Recommendations:\n`;
+        document.querySelectorAll('#dietsModal .list-group-item').forEach(item => {
+            reportContent += `- ${item.textContent}\n`;
+        });
+
+        // Create blob and download
+        const blob = new Blob([reportContent], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'medical_report.txt';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    }
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+
+</html>

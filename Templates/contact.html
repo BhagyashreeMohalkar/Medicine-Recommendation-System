@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us | Makardhwaj Medicine Recommendation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: #4facfe;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #4facfe;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .social-links a {
+            color: #ffffff;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #4facfe;
+            transform: translateY(-5px);
+        }
+
+        .floating-shapes div {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .contact-form input, .contact-form textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 0.8rem;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+            border-color: #4facfe;
+        }
+
+        .btn-contact {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="floating-shapes">
+        <div style="left: 10%; top: 20%; width: 80px; height: 80px;"></div>
+        <div style="left: 80%; top: 60%; width: 60px; height: 60px;"></div>
+        <div style="left: 30%; top: 80%; width: 100px; height: 100px;"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="static/logo.jpg" alt="Logo" style="width: 40px; height: 40px; border-radius: 50%;">
+                Makardhwaj Medicine
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h1 class="section-title text-center animate__animated animate__fadeInDown">Get in Touch</h1>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="glass-container animate__animated animate__fadeInLeft">
+                    <h3><i class="fas fa-paper-plane contact-icon"></i></h3>
+                    <h4>Contact Information</h4>
+                    <p><i class="fas fa-envelope me-2"></i> mohalkarbhagyashri961@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> India</p>
+                    <div class="social-links mt-4">
+                        <a href="https://github.com/BhagyashreeMohalkar"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/bhagyashree-mohalkar-1b6861287/"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="glass-container animate__animated animate__fadeInRight">
+                    <form class="contact-form">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-contact">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 mt-5 glass-container">
+        <p class="mb-0">© 2023 Makardhwaj Medicine Recommendation System. Made with <i class="fas fa-heart text-danger"></i> by Bhagyashree Mohalkar</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

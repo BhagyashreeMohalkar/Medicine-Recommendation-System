@@ -22,8 +22,6 @@ Makardhwaj is an intelligent medicine recommendation system designed to enhance 
 - **HTML, CSS, JavaScript (Frontend)** 🎨
 - **SQLite (Database)** 🗃️
 
-```
-
 ## 🔍 Usage
 - **Enter your symptoms** in the input field.
 - **Get instant medicine recommendations** based on AI analysis.
